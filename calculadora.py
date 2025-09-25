@@ -1,51 +1,42 @@
 import math
 import os
+
+os.system("cls")
+entrada = input("Digite a conta: ")
 os.system("cls")
 
-cal = input("Digite o cálculo: ")  
-partes = cal.split()
-resultado = 0
+partes = entrada.split()
+x = float(partes[0]) if "." in partes[0] else int(partes[0])
+op = partes[1]
+y = float(partes[2]) if len(partes) == 3 else None
 
-if len(partes) == 2 and partes[1] == "v":
-    n1 = float(partes[0])
-    resultado = math.sqrt(n1)
-
-elif len(partes) == 3:
-    n1, op, n2, i = partes
-    n1 = float(n1)
-    n2 = float(n2)
-    op = ""
-    i = ""
-
-    if op == "+":
-        resultado = n1 + n2
-    elif op == "-":
-        resultado = n1 - n2
-    elif op == "x":
-        resultado = n1 * n2
-    elif op == "/":
-        if len(partes) == 3 and partes[3] == 0:
-            resultado = int(n1 / n2)
-        elif n2 != 0:
-            resultado = n1 / n2
-        else:
-            print("Erro: divisão por zero")
-            resultado = None
-    else:
-        print("Operador inválido")
-        resultado = None
-
+if op == "+":
+    resultado = x + y
+elif op == "-":
+    resultado = x - y
+elif op in ["*", "x"]:
+    resultado = x * y
+elif op == "/":
+    resultado = x / y
+elif op == "//":
+    resultado = x // y
+    resto = x % y
+elif op == "v":
+    resultado = math.sqrt(x)
+elif op == "^":
+    resultado = math.pow(x, y)
+elif op == "%":
+    resultado = (y / 100) * x
 else:
-    print("Formato inválido de cálculo")
+    print("Erro")
     resultado = None
 
-
 if resultado is not None:
-   if len(partes) == 3:
-    print(int(f"{resultado}"))
-    print(f"o resto é{resultado : %}")
-   elif isinstance(resultado, float) and resultado.is_integer():
-        print(int(resultado))
-   else:
-        print(f"{resultado:.2f}")
-
+    if isinstance(resultado, float) and resultado.is_integer():
+        resultado = int(resultado) 
+    if op == "v":
+        print(f"√ {x} = {resultado}")
+    elif op == "//":
+        print(f"{x} // {y} = {resultado} com resto {resto}")
+    else:
+        print(f"{x} {op} {y:.0f} = {resultado}")
