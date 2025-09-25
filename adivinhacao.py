@@ -11,7 +11,7 @@ chancesextras = 0
 acertos = 0
 
 while chances > 0 and dif <= 6:
-    os.sys("cls")
+    os.system("cls")
     if dif == 1:
         ran = random.randint(1, 2)
     elif dif == 2:
@@ -66,9 +66,10 @@ while chances > 0 and dif <= 6:
         dif += 1
         acertos += 1
         if acertos == 2:
-            chancesextras += 1
+            chance+= 1
     else:
         print(f"Você errou. O número era {ran}.")
         chances -= 1
 
 print("Suas chances acabaram.")
+
