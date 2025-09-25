@@ -48,3 +48,4 @@ if resultado is not None:
         print(int(resultado))
    else:
         print(f"{resultado:.2f}")
+
